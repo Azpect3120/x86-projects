@@ -71,5 +71,20 @@ _start:
   MOV ebx, 0b1100
   XOR eax, ebx          ; destination, source: eax = eax ^ ebx
 
+  ; INT 0x80
+
+  ; SHIFT OPERATORS
+  ; ==================================================================
+  ; Shifting left can be used to double the value in a register
+  MOV eax, 0b0010
+  SHL eax, 1            ; destination, source: eax = eax << 1
+
+  ; Shifting right can be used to half the value in a register
+  MOV eax, 0b0100
+  SHR eax, 1            ; destination, source: eax = eax >> 1
+
+  ; Using SAR and SAL will shift the bits to the right or left respectively, but will keep the sign bit the same
+  ; Same idea as using the signed versions of the math instructions
+
   INT 0x80
 
