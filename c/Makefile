@@ -1,0 +1,3 @@
+build:
+	nasm -f elf -o main.o main.asm
+	gcc -no-pie -m32 main.o -o main
