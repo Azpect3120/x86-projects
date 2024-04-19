@@ -18,6 +18,10 @@ section .data
   ; Reserve 3 bytes of memory and initialize them to 2
   num2 DB 3 DUP(2)
 
+  ; Floating point numbers
+  float1 DD 3.14
+  float2 DD 2.1
+
 section .text
 
 global _start
@@ -44,7 +48,14 @@ _start:
   MOV cl, 3
   MOV [num2], cl
 
+  ; How and where to load floating point numbers
+  ; Registers for floats are xmm0-xmm15
+  MOVSS xmm0, [float1]
+  MOVSS xmm1, [float2]
+  ADDSS xmm0, xmm1        ; Add the two floats and store it in the first float
+
   MOV eax, 1
+  MOV ebx, 1
   INT 0x80
   
   
