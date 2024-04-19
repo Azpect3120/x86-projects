@@ -3,6 +3,9 @@
 extern printf
 extern exit
 
+; Import the custom C function
+extern test
+
 section .data
   msg DD "Hello World!", 0x0a, 0
   msg2 DD "Hi mom! :)", 0
@@ -23,5 +26,12 @@ main:
   PUSH fmt
   CALL printf     ; Call the printf function (must match the name in the C code)
 
-  PUSH 1          ; Push the exit code to the stack
+  ; Call the custom function
+  ; int test(int, int);
+  ; result will be in the a register
+  PUSH 1
+  PUSH 2
+  CALL test
+
+  PUSH eax        ; Push the exit code to the stack, the return value of the test function
   CALL exit       ; Call the exit function (must match the name in the C code)
